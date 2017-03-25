@@ -1,15 +1,15 @@
 /*
  * Copyright (C) 2004-2009 Georgy Yunaev gyunaev@ulduzsoft.com
  *
- * This example is free, and not covered by LGPL license. There is no 
+ * This example is free, and not covered by LGPL license. There is no
  * restriction applied to their modification, redistribution, using and so on.
- * You can study them, modify them, use them in your own program - either 
+ * You can study them, modify them, use them in your own program - either
  * completely or partially. By using it you may give me some credits in your
  * program, but you don't have to.
  *
  *
- * This example spams the specified channels with words 'HAHA', 'HEHE' and 
- * 'HUHU' using three threads. Its main purpose is to test multithreading 
+ * This example spams the specified channels with words 'HAHA', 'HEHE' and
+ * 'HUHU' using three threads. Its main purpose is to test multithreading
  * support of libircclient.
  */
 
@@ -41,8 +41,8 @@
  */
 typedef struct
 {
-	char 	* channel;
-	char 	* nick;
+	char	* channel;
+	char	* nick;
 
 } irc_ctx_t;
 
@@ -86,7 +86,7 @@ void event_join (irc_session_t * session, const char * event, const char * origi
 
 	// We need to know whether WE are joining the channel, or someone else.
 	// To do this, we compare the origin with our nick.
-    // Note that we have set LIBIRC_OPTION_STRIPNICKS to obtain 'parsed' nicks.
+	// Note that we have set LIBIRC_OPTION_STRIPNICKS to obtain 'parsed' nicks.
 	if ( !strcmp(origin, ctx->nick) )
 	{
 		static spam_params_t spam1;
@@ -134,7 +134,7 @@ void event_numeric (irc_session_t * session, unsigned int event, const char * or
 {
 	if ( event > 400 )
 	{
-		printf ("ERROR %d: %s: %s %s %s %s\n", 
+		printf ("ERROR %d: %s: %s %s %s %s\n",
 				event,
 				origin ? origin : "unknown",
 				params[0],
@@ -167,7 +167,7 @@ int main (int argc, char **argv)
 	callbacks.event_numeric = event_numeric;
 
 	ctx.channel = argv[3];
-    ctx.nick = argv[2];
+	ctx.nick = argv[2];
 
 	// And create the IRC session; 0 means error
 	s = irc_create_session (&callbacks);
@@ -185,16 +185,16 @@ int main (int argc, char **argv)
 	if ( strchr( argv[1], ':' ) != 0 )
 		port = 0;
 
-	// To handle the "SSL certificate verify failed" from command line we allow passing ## in front 
+	// To handle the "SSL certificate verify failed" from command line we allow passing ## in front
 	// of the server name, and in this case tell libircclient not to verify the cert
 	if ( argv[1][0] == '#' && argv[1][1] == '#' )
 	{
 		// Skip the first character as libircclient needs only one # for SSL support, i.e. #irc.freenode.net
 		argv[1]++;
-		
+
 		irc_option_set( s, LIBIRC_OPTION_SSL_NO_VERIFY );
 	}
-	
+
 	// Initiate the IRC server connection
 	if ( irc_connect (s, argv[1], port, 0, argv[2], 0, 0) )
 	{

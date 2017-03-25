@@ -1,9 +1,9 @@
 /*
  * Copyright (C) 2004-2009 Georgy Yunaev gyunaev@ulduzsoft.com
  *
- * This example is free, and not covered by LGPL license. There is no 
+ * This example is free, and not covered by LGPL license. There is no
  * restriction applied to their modification, redistribution, using and so on.
- * You can study them, modify them, use them in your own program - either 
+ * You can study them, modify them, use them in your own program - either
  * completely or partially. By using it you may give me some credits in your
  * program, but you don't have to.
  *
@@ -31,7 +31,7 @@
 #include "libircclient.h"
 
 
-#define FILES_DIR 	"."
+#define FILES_DIR		"."
 
 /*
  * We store data in IRC session context.
@@ -154,7 +154,7 @@ int main (int argc, char **argv)
 	}
 
 	ctx.channel = argv[3];
-    ctx.nick = argv[2];
+	ctx.nick = argv[2];
 
 	irc_set_ctx (s, &ctx);
 	irc_option_set (s, LIBIRC_OPTION_STRIPNICKS);
@@ -163,16 +163,16 @@ int main (int argc, char **argv)
 	if ( strchr( argv[1], ':' ) != 0 )
 		port = 0;
 
-	// To handle the "SSL certificate verify failed" from command line we allow passing ## in front 
+	// To handle the "SSL certificate verify failed" from command line we allow passing ## in front
 	// of the server name, and in this case tell libircclient not to verify the cert
 	if ( argv[1][0] == '#' && argv[1][1] == '#' )
 	{
 		// Skip the first character as libircclient needs only one # for SSL support, i.e. #irc.freenode.net
 		argv[1]++;
-		
+
 		irc_option_set( s, LIBIRC_OPTION_SSL_NO_VERIFY );
 	}
-	
+
 	// Initiate the IRC server connection
 	if ( irc_connect (s, argv[1], port, 0, argv[2], 0, 0) )
 	{

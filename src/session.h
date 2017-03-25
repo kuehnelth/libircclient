@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (C) 2004-2012 George Yunaev gyunaev@ulduzsoft.com
  *
- * This library is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU Lesser General Public License as published by 
- * the Free Software Foundation; either version 3 of the License, or (at your 
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or (at your
  * option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public 
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
  * License for more details.
  */
 
@@ -39,10 +39,10 @@ struct irc_session_s
 	int				options;
 	int				lasterror;
 
-	char 			incoming_buf[LIBIRC_BUFFER_SIZE];
+	char			incoming_buf[LIBIRC_BUFFER_SIZE];
 	unsigned int	incoming_offset;
 
-	char 			outgoing_buf[LIBIRC_BUFFER_SIZE];
+	char			outgoing_buf[LIBIRC_BUFFER_SIZE];
 	unsigned int	outgoing_offset;
 	port_mutex_t	mutex_session;
 
@@ -50,9 +50,9 @@ struct irc_session_s
 	int				state;
 	int				flags;
 
-	char 		  *	server;
+	char		  *	server;
 	char		  * server_password;
-	char 		  *	realname;
+	char		  *	realname;
 	char		  * username;
 	char		  *	nick;
 	char		  * ctcp_version;
@@ -69,10 +69,10 @@ struct irc_session_s
 	irc_callbacks_t	callbacks;
 
 #if defined (ENABLE_SSL)
-	SSL 		 *	ssl;
+	SSL			 *	ssl;
 #endif
 
-	
+
 };
 
 

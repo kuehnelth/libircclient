@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (C) 2004-2012 George Yunaev gyunaev@ulduzsoft.com
  *
- * This library is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU Lesser General Public License as published by 
- * the Free Software Foundation; either version 3 of the License, or (at your 
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or (at your
  * option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public 
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
  * License for more details.
  */
 
@@ -58,7 +58,7 @@ static inline void libirc_colorparser_addorcat (char ** destline, unsigned int *
 }
 
 
-static void libirc_colorparser_applymask (unsigned int * mask, 
+static void libirc_colorparser_applymask (unsigned int * mask,
 		char ** destline, unsigned int * destlen,
 		unsigned int bitmask, const char * start, const char * end)
 {
@@ -75,7 +75,7 @@ static void libirc_colorparser_applymask (unsigned int * mask,
 }
 
 
-static void libirc_colorparser_applycolor (unsigned int * mask, 
+static void libirc_colorparser_applycolor (unsigned int * mask,
 		char ** destline, unsigned int * destlen,
 		unsigned int colorid, unsigned int bgcolorid)
 {
@@ -95,7 +95,7 @@ static void libirc_colorparser_applycolor (unsigned int * mask,
 }
 
 
-static void libirc_colorparser_closetags (unsigned int * mask, 
+static void libirc_colorparser_closetags (unsigned int * mask,
 		char ** destline, unsigned int * destlen)
 {
 	if ( *mask & LIBIRC_COLORPARSER_BOLD )
@@ -123,11 +123,11 @@ static char * libirc_colorparser_irc2code (const char * source, int strip)
 	const char *p;
 	int current_bg = 0;
 
-    /*
-     * There will be two passes. First pass calculates the total length of
-     * the destination string. The second pass allocates memory for the string,
-     * and fills it.
-     */
+	/*
+	 * There will be two passes. First pass calculates the total length of
+	 * the destination string. The second pass allocates memory for the string,
+	 * and fills it.
+	 */
 	while ( destline == 0 ) // destline will be set after the 2nd pass
 	{
 		if ( destlen > 0 )
@@ -149,7 +149,7 @@ static char * libirc_colorparser_irc2code (const char * source, int strip)
 
 				libirc_colorparser_applymask (&mask, &d, &destlen, LIBIRC_COLORPARSER_BOLD, "[B]", "[/B]");
 				break;
-				
+
 			case 0x1F:	// underline
 				if ( strip )
 					continue;
@@ -174,7 +174,7 @@ static char * libirc_colorparser_irc2code (const char * source, int strip)
 			case 0x03:	// set color
 				if ( isdigit (p[1]) )
 				{
-					// Parse 
+					// Parse
 					int bgcolor = -1, color = p[1] - 0x30;
 					p++;
 
@@ -184,7 +184,7 @@ static char * libirc_colorparser_irc2code (const char * source, int strip)
 						p++;
 					}
 
-					// If there is a comma, search for the following 
+					// If there is a comma, search for the following
 					// background color
 					if ( p[1] == ',' && isdigit (p[2]) )
 					{
@@ -199,7 +199,7 @@ static char * libirc_colorparser_irc2code (const char * source, int strip)
 					}
 
 					// Check for range
-					if ( color <= LIBIRC_COLORPARSER_MAXCOLORS 
+					if ( color <= LIBIRC_COLORPARSER_MAXCOLORS
 					&& bgcolor <= LIBIRC_COLORPARSER_MAXCOLORS )
 					{
 						if ( strip )
@@ -252,11 +252,11 @@ char * irc_color_convert_to_mirc (const char * source)
 	char * destline = 0, *d = 0;
 	const char *p1, *p2, *cur;
 
-    /*
-     * There will be two passes. First pass calculates the total length of
-     * the destination string. The second pass allocates memory for the string,
-     * and fills it.
-     */
+	/*
+	 * There will be two passes. First pass calculates the total length of
+	 * the destination string. The second pass allocates memory for the string,
+	 * and fills it.
+	 */
 	while ( destline == 0 ) // destline will be set after the 2nd pass
 	{
 		if ( destlen > 0 )
@@ -276,7 +276,7 @@ char * irc_color_convert_to_mirc (const char * source)
 
 			// Check if the closing bracket is available after p1
 			// and the tag length is suitable
-			if ( p1[1] != '\0' 
+			if ( p1[1] != '\0'
 			&& (p2 = strchr (p1, ']')) != 0
 			&& (p2 - p1) > 1
 			&& (p2 - p1) < 31 )
